@@ -10,6 +10,10 @@ const canvas = document.querySelector('.screen');
 const ctx = canvas.getContext('2d');
 const px = 30;
 
+
+let img = new Image();
+img.src = './assets/img/orange.svg';
+
 canvas.width = 15 * 30;
 canvas.height = 15 * 30;
 
@@ -38,35 +42,36 @@ function criarBg() {
 
 function criarSnake() {
     for (i = 0; i < snake.length; i++) {
-        ctx.fillStyle = "green";
-        ctx.fillRect(snake[i].x, snake[i].y, px -1, px -1);
+        ctx.fillStyle = "#20bf6b";
+        ctx.fillRect(snake[i].x, snake[i].y, px - 1, px - 1);
     }
 }
 
-function desenhaFruta(){
-    ctx.fillStyle = "orange";
-    ctx.fillRect(food.x, food.y, px, px);
+function desenhaFruta() {
+    ctx.drawImage(img, food.x, food.y, px, px);
+    console.log(img)
+
 }
 
-function moveSnake(key){
+function moveSnake(key) {
     const moveAccepted = [
         'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'
     ]
-    
-    for(let i = 0; i < moveAccepted.length; i++){
-        if(key === moveAccepted[i]){
+
+    for (let i = 0; i < moveAccepted.length; i++) {
+        if (key === moveAccepted[i]) {
             direction = key
         }
     }
 }
 
-function listenerKeiboard(key){
-    if(!key) return ;
-    if(snake[0].y < 0 || snake[0].y >= canvas.height || snake[0].x < 0 || snake[0].x >= canvas.width) return;
+function listenerKeiboard(key) {
+    if (!key) return;
+    if (snake[0].y < 0 || snake[0].y >= canvas.height || snake[0].x < 0 || snake[0].x >= canvas.width) return;
     moveSnake(key);
 }
 
-function update(event){
+function update(event) {
     event.preventDefault();
 
     listenerKeiboard(event.key);
@@ -82,32 +87,38 @@ setInterval(() => {
 function motor() {
 
 
-    // for(let i = 1; i < snake.length;i++){
-    //     if(snake[0].x === snake[i].x && snake[0].y === snake[i].y){
-    //         clearInterval(motor);
-    //         alert('Gamer Over :/');
-    //         // state.engine = 'stop'
-    //     }
-    // }
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+            clearInterval(motor);
+            snake.length = 0;
+            snake[0] = {
+                x: 8 * 30,
+                y: 8 * 30
+            }
+            direction = '';
+            food.x = Math.floor(Math.random() * 15) * px;
+            food.y = Math.floor(Math.random() * 15) * px;
+            alert('Gamer Over :/');
 
-    // 'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'
-
-
-    if(snake[0].y < 0 && direction == 'ArrowUp'){
-        console.log('fire',snake[0].y)
-        snake[0].y = canvas.width;
-        console.log('fire',snake[0].y)
+        }
     }
 
-    if(snake[0].x >= canvas.width && direction == 'ArrowRight'){
+
+    if (snake[0].y < 0 && direction == 'ArrowUp') {
+        console.log('fire', snake[0].y)
+        snake[0].y = canvas.width;
+        console.log('fire', snake[0].y)
+    }
+
+    if (snake[0].x >= canvas.width && direction == 'ArrowRight') {
         snake[0].x = 0
     }
 
-    if(snake[0].y >= canvas.height && direction == 'ArrowDown'){
+    if (snake[0].y >= canvas.height && direction == 'ArrowDown') {
         snake[0].y = 0;
     }
 
-    if(snake[0].x < 0 && direction == 'ArrowLeft'){
+    if (snake[0].x < 0 && direction == 'ArrowLeft') {
         snake[0].x = (15 * px);
     }
 
@@ -121,7 +132,7 @@ function motor() {
     desenhaFruta()
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
-    
+
 
     if (direction == 'ArrowUp') snakeY -= px;
     if (direction == 'ArrowRight') snakeX += px;
@@ -129,12 +140,12 @@ function motor() {
     if (direction == 'ArrowLeft') snakeX -= px;
 
 
-    if(snakeX != food.x || snakeY != food.y){
+    if (snakeX != food.x || snakeY != food.y) {
         snake.pop()
-        if(snake.length > 10){
+        if (snake.length > 10) {
             snake = snake.slice(0, -1)
         }
-    }else{
+    } else {
         food.x = Math.floor(Math.random() * 15) * px;
         food.y = Math.floor(Math.random() * 15) * px;
     }
