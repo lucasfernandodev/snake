@@ -39,7 +39,7 @@ header{
 .hero .container .painel{
     height: 100%;
     width: 280px;
-    background: #1e90ff;
+    background: #44bd32;
     margin-left: 2px;
     display: flex;
     flex-direction: column;
@@ -62,6 +62,8 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    height: 100%;
     max-width: 240px;
     margin: 0 auto;
 }
@@ -76,9 +78,13 @@ header{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
     margin: 8px 0;
     cursor: pointer;
+}
+
+.menu .menu-item:hover{
+    background: #4cd137;
 }
 
 .score{
@@ -86,5 +92,5 @@ header{
     color: #fafafa;
     text-align: center;
     margin-bottom: 20px;
-
+    display: none;
 }
