@@ -1,5 +1,5 @@
 import createScreen from './screen.js';
-import _configScreen from './functions/screen/_configScreen.js'
+import _configScreen from './functions/screen/config.js'
 import engine from './engine.js';
 
 
