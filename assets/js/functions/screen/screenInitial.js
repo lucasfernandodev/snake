@@ -1,4 +1,4 @@
-export default function criarLogo(objCanvas) {
+export default function screenInitial(objCanvas) {
 
     
     const {_configScreen, context} = objCanvas;

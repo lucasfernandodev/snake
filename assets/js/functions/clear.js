@@ -1,4 +1,4 @@
-export default function clearScreen (objCanvas){
+export default function clear (objCanvas){
     const {_configScreen, context} = objCanvas;
     const {canvasWidth, canvasHeight } = _configScreen;
 
