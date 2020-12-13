@@ -1,15 +1,12 @@
-export default function snakeAnimation() {
+export default function criarLogo(objCanvas) {
 
-    const canvas = document.querySelector('.screen');
-    const ctx = canvas.getContext('2d');
-    const px = 15;
-
-    canvas.width = 30 * 15;
-    canvas.height = 30 * 15;
+    
+    const {_configScreen, context} = objCanvas;
+    const {px, canvasWidth, canvasHeight } = _configScreen;
 
 
-    ctx.fillStyle = " hsl(148, 71%, 64%)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "hsl(148, 71%, 64%)";
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
 
 
     const drawSnakeLogo = () => {
@@ -44,8 +41,8 @@ export default function snakeAnimation() {
         }
 
         // Calculo para posicionar a imagem no centro do canvas
-        const centerX = Math.round((canvas.width - snakeLogo[0].length) / 4);
-        const centerY = Math.round((canvas.height - snakeLogo.length) / 4);
+        const centerX = Math.round((canvasWidth - snakeLogo[0].length) / 4);
+        const centerY = Math.round((canvasHeight - snakeLogo.length) / 4);
 
         // desenha a imagem
         for (let i = 0; i < snakeLogo.length; i++) {
@@ -56,24 +53,24 @@ export default function snakeAnimation() {
                 if (linha[c] != 0) {
 
                     if (linha[c] == 2) {
-                        ctx.fillStyle = colors.black;
-                        ctx.fillRect(centerX + (c * px), centerY + (i * px), px, px);
+                        context.fillStyle = colors.black;
+                        context.fillRect(centerX + (c * px), centerY + (i * px), px, px);
                     } else {
 
                         if (linha[c] == 4) {
-                            ctx.fillStyle = colors.lightgreen;
-                            ctx.fillRect(centerX + (c * px), centerY + (i * px), px, px);
+                            context.fillStyle = colors.lightgreen;
+                            context.fillRect(centerX + (c * px), centerY + (i * px), px, px);
                         } else {
                             if (linha[c] == 6) {
-                                ctx.fillStyle = colors.green;
-                                ctx.fillRect(centerX + (c * px), centerY + (i * px), px, px);
+                                context.fillStyle = colors.green;
+                                context.fillRect(centerX + (c * px), centerY + (i * px), px, px);
                             } else {
                                 if (linha[c] == 8) {
-                                    ctx.fillStyle = colors.pink;
-                                    ctx.fillRect(centerX + (c * px), centerY + (i * px), px, px);
+                                    context.fillStyle = colors.pink;
+                                    context.fillRect(centerX + (c * px), centerY + (i * px), px, px);
                                 } else {
-                                    ctx.fillStyle = colors.white;
-                                    ctx.fillRect(centerX + (c * px), centerY + (i * px), px, px);
+                                    context.fillStyle = colors.white;
+                                    context.fillRect(centerX + (c * px), centerY + (i * px), px, px);
                                 }
                             }
                         }

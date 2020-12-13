@@ -6,170 +6,29 @@
 // TER 3 NIVEIS
 // ADICIONAR START/STOP
 
-import snakeAnimation from "./snakeAnimation.js";
+// import snakeAnimation from "./snakeAnimation.js";
+import createScreen from './functions/tela/createScreen.js';
+import _configScreen from './functions/tela/configScreen.js'
+import engine from './engine.js';
 
-function game(){
-    snakeAnimation()
+const canvas = document.querySelector('.tela');
 
-}
-game()
-// setInterval(() => {
-//     game()
-// }, 100);
-// const canvas = document.querySelector('.screen');
-// const ctx = canvas.getContext('2d');
-// const px = 30;
+const creatCanvas = createScreen('.screen', _configScreen);
+const context = creatCanvas.ctx;
 
 
-// let img = new Image();
-// img.src = './assets/img/orange.svg';
+const jogo = engine({_configScreen, context})
+jogo.inital();
 
-// canvas.width = 15 * 30;
-// canvas.height = 15 * 30;
-
-
-
-// var direction;
-
-// let snake = [];
-// snake[0] = {
-//     x: 8 * 30,
-//     y: 8 * 30
-// }
-
-// let food = {
-//     x: Math.floor(Math.random() * 15) * px,
-//     y: Math.floor(Math.random() * 15) * px
-// }
+const newGamer = document.querySelector('.newGame');
+newGamer.addEventListener('click', () => {
+  
+    jogo.start();
 
 
-// document.addEventListener('keydown', update)
+    // const retorno = jogo.start({})
+    console.log('casa')
 
-// function criarBg() {
-//     ctx.fillStyle = "rgba(2550,255,255,0.5)";
-//     ctx.fillRect(0, 0, canvas.width, canvas.height);
-// }
-
-// function criarSnake() {
-//     for (i = 0; i < snake.length; i++) {
-//         ctx.fillStyle = "#20bf6b";
-//         ctx.fillRect(snake[i].x, snake[i].y, px - 1, px - 1);
-//     }
-// }
-
-// function desenhaFruta() {
-//     ctx.drawImage(img, food.x, food.y, px, px);
-//     console.log(img)
-
-// }
-
-// function moveSnake(key) {
-//     const moveAccepted = [
-//         'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'
-//     ]
-
-//     for (let i = 0; i < moveAccepted.length; i++) {
-//         if (key === moveAccepted[i]) {
-//             direction = key
-//         }
-//     }
-// }
-
-// function listenerKeiboard(key) {
-//     if (!key) return;
-//     if (snake[0].y < 0 || snake[0].y >= canvas.height || snake[0].x < 0 || snake[0].x >= canvas.width) return;
-//     moveSnake(key);
-// }
-
-// function update(event) {
-//     event.preventDefault();
-
-//     listenerKeiboard(event.key);
-// }
-
-
-
-
-// setInterval(() => {
-//     motor();
-// }, 100);
-
-// function motor() {
-
-
-//     for (let i = 1; i < snake.length; i++) {
-//         if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
-//             clearInterval(motor);
-//             snake.length = 0;
-//             snake[0] = {
-//                 x: 8 * 30,
-//                 y: 8 * 30
-//             }
-//             direction = '';
-//             food.x = Math.floor(Math.random() * 15) * px;
-//             food.y = Math.floor(Math.random() * 15) * px;
-//             alert('Gamer Over :/');
-
-//         }
-//     }
-
-
-//     if (snake[0].y < 0 && direction == 'ArrowUp') {
-//         console.log('fire', snake[0].y)
-//         snake[0].y = canvas.width;
-//         console.log('fire', snake[0].y)
-//     }
-
-//     if (snake[0].x >= canvas.width && direction == 'ArrowRight') {
-//         snake[0].x = 0
-//     }
-
-//     if (snake[0].y >= canvas.height && direction == 'ArrowDown') {
-//         snake[0].y = 0;
-//     }
-
-//     if (snake[0].x < 0 && direction == 'ArrowLeft') {
-//         snake[0].x = (15 * px);
-//     }
-
-
-
-
-
-
-//     criarBg()
-//     criarSnake()
-//     desenhaFruta()
-//     let snakeX = snake[0].x;
-//     let snakeY = snake[0].y;
-
-
-//     if (direction == 'ArrowUp') snakeY -= px;
-//     if (direction == 'ArrowRight') snakeX += px;
-//     if (direction == 'ArrowDown') snakeY += px;
-//     if (direction == 'ArrowLeft') snakeX -= px;
-
-
-//     if (snakeX != food.x || snakeY != food.y) {
-//         snake.pop()
-//         if (snake.length > 10) {
-//             snake = snake.slice(0, -1)
-//         }
-//     } else {
-//         food.x = Math.floor(Math.random() * 15) * px;
-//         food.y = Math.floor(Math.random() * 15) * px;
-//     }
-
-
-//     const sheadSnake = {
-//         x: snakeX,
-//         y: snakeY
-//     }
-
-//     snake.unshift(sheadSnake);
-//     console.log(snake.length);
-
-
-// }
+})
 
 // const gameInit = motor()
